@@ -1,0 +1,55 @@
+@import '../../../assets/colors.scss';
+
+.hero{
+  &__container{
+    min-height: calc(100vh - 3.5rem);
+    background-size: cover;
+    background-position: center;  
+    padding: 0;
+    transition: ease-in 0.5s;
+  }
+
+  &__header{
+    margin-top: 33vh;
+    padding: 1rem 8rem;
+    text-align: center;
+    color: $primary-color;
+    font-weight: 800;
+    background-color: $secondary-color;
+
+  }
+
+  &__ctaButton
+  {
+    background-color: $primary-color; 
+    color: $accent1-color;
+    display: block;
+    margin: 1rem auto;
+    padding: 1rem 2rem 0.5rem;
+    border: none;
+    border-bottom: 0.5rem solid $primary-color;
+    max-width: 25vw;
+    font-weight: 500;
+    transition: ease-in 0.5s;
+  }
+
+  &__ctaButton:hover, &__ctaButton:active{
+    border-color: $secondary-color;
+  }
+
+  &__ctaButton:focus{
+    outline: 2px solid $secondary-color;
+  }
+
+}
+
+@media (min-width: 992px)
+{
+  .hero{
+    &__header{
+      text-align: left;
+    }
+  }
+}
+
+

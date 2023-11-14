@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">psinder</string>
+    <string name="title_activity_main">psinder</string>
+    <string name="package_name">com.lightiiyTest.psinder</string>
+    <string name="custom_url_scheme">com.lightiiyTest.psinder</string>
+</resources>

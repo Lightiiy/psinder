@@ -1,0 +1,47 @@
+@import '../../../assets/colors';
+
+.postCard{
+  background-color: $primary-color;
+  aspect-ratio: 4 / 1 ;
+  margin-bottom: 1rem ;
+  display: flex;
+
+
+  &__userDataContainer{
+    height: 100%;
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__header,&__text{
+    color: $accent1-color;
+  }
+
+
+  &__avatar{
+    position: relative;
+    background-color: $accent1-color;
+    height: 100%;
+    aspect-ratio: 1/1;
+  }
+
+  &__pictureContainer{
+    position: relative;
+    height: 100%;
+    aspect-ratio: 1/1;
+  }
+
+
+}  
+
+@media (min-width: 768px)
+{
+  .postCard{
+    flex-direction: column;
+    margin: 1rem;
+    aspect-ratio: 1 /1 ;
+    
+  }
+  
+}

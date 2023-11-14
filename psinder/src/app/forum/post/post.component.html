@@ -1,0 +1,14 @@
+<div class="postCard" *ngIf="postData">
+  <div class="postCard__avatar">
+    <img [ngSrc]="postData.avatar" fill>
+  </div>
+  <div class="postCard__userDataContainer">
+    <h2 class="postCard__header">{{postData.name}}</h2>
+    <div *ngIf="postData.time; else anytimeText" class="postCard__text"> User prefers: {{postData.time}} for walkies with their dog.</div>
+    <ng-template #anytimeText>
+      <div class="postCard__text">
+        Contact dog owner to specify walk times!
+      </div>
+  </ng-template>
+  </div>
+</div>

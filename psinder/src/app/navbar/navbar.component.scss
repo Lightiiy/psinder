@@ -1,0 +1,27 @@
+@import '../../assets/colors.scss';
+
+.navbar{
+  &__container{
+    position: sticky;
+    background-color: $primary-color;
+    width: 100%;
+    padding: 0 2rem;
+  }
+
+  &__item{
+    display: flex;
+    gap: 1rem;
+    margin: 0 1rem;
+    padding: 1rem 1rem 0.5rem;
+    border-bottom: 0.5rem solid transparent;
+    color: $accent1-color;
+    transition: ease-in 0.5s;
+    font-weight: 500;
+  }
+
+  &__item:hover, &__active{
+    border-color: $secondary-color;
+  }
+
+}
+

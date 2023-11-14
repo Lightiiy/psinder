@@ -1,0 +1,10 @@
+<div class="forum__container">
+  <div class="row g-0">
+    <app-map class="forum__map col-12 col-lg-6"></app-map>
+    <div class="forum__postSection col-12 col-lg-6">
+      <div class="row g-0">
+        <app-post *ngFor="let post of forumPosts" class="col-12 col-md-6 col-lg-4" (click)="zoomToPost(post.coords)" [postData]="post"></app-post>
+      </div>
+    </div>
+  </div>
+</div>

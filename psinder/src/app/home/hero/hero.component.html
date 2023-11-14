@@ -1,0 +1,10 @@
+<div class="row g-0">
+  <div class="hero__container" [ngStyle]="{'background-image': ' linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(' + getNextImage() + ')'}">
+
+    <h1 class="hero__header col-12 col-lg-6">
+      Socialise your furball with other nearby furry friends!
+    </h1>
+    <div class="col-0 col-lg-6"></div>
+    <button type="button" class="hero__ctaButton col-12 col-lg-6 ml-lg-0" (click)="getUserLocation()" >See all your local furry friends!</button>
+  </div>
+</div>
