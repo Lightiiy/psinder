@@ -5,6 +5,7 @@ import { Injectable } from "@angular/core";
 })
 export class ForumMockService { 
 
+  //@ts-ignore
   mockPosts = require('../../assets/mock/MOCK_FORUM.json');
 
 }

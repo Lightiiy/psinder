@@ -12,6 +12,7 @@ export class GeolocationService {
 
   userPosition: Observable<number[]> = this.userPositionSubject.asObservable();
 
+  //@ts-ignore
   mockPositions = require('../../assets/mock/MOCK_DATA.json');
 
   constructor() {

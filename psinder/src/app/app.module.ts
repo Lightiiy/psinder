@@ -12,6 +12,8 @@ import { HeroComponent } from './home/hero/hero.component';
 import { GeolocationService } from './services/geolocation.services';
 import { PostComponent } from './forum/post/post.component';
 import { NgOptimizedImage } from '@angular/common';
+import { environment } from '../environments/environment';
+
 
 @NgModule({
   declarations: [
@@ -27,7 +29,7 @@ import { NgOptimizedImage } from '@angular/common';
     BrowserModule,
     NgOptimizedImage,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [GeolocationService],
   bootstrap: [AppComponent]
