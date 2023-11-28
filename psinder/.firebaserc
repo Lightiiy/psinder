@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "psinder-app": {
+      "hosting": {
+        "psinder": [
+          "psinder-app"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "psinder-app"
+  }
+}
