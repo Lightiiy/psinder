@@ -1,8 +1,11 @@
 import { Injectable } from "@angular/core";
-import { Observable, Subject, from } from "rxjs";
+import { Observable, Subject, from, map } from "rxjs";
 import Map from 'ol/Map';
 import { Coordinate } from 'ol/coordinate';
 import { Geolocation } from '@capacitor/geolocation';
+import { AngularFirestore } from "@angular/fire/compat/firestore";
+import { GeoLoc } from "../../assets/models/geoLoc.model";
+import { UserData } from "../../assets/models/userData.model";
 
 @Injectable({
   providedIn: 'root',
@@ -10,12 +13,24 @@ import { Geolocation } from '@capacitor/geolocation';
 export class GeolocationService {
   private userPositionSubject: Subject<number[]>  = new Subject<number[]>();
 
+  readonly USER_COLLECTION = 'Users'
+  
+
   userPosition: Observable<number[]> = this.userPositionSubject.asObservable();
 
-  //@ts-ignore
-  mockPositions = require('../../assets/mock/MOCK_DATA.json');
+  mockPositions!: Observable<GeoLoc[]>
 
-  constructor() {
+
+  constructor(private store: AngularFirestore) {
+    const userCollectionRef = this.store.collection(this.USER_COLLECTION);
+
+    this.mockPositions = userCollectionRef.snapshotChanges().pipe(
+      map( docs =>
+        {
+          return docs.map((doc) => (<UserData>doc.payload.doc.data()).location)
+        }
+        )
+    )
   }
 
   getUserLocation(){
@@ -43,12 +58,5 @@ export class GeolocationService {
         duration: 1000,
       })
     }
-  }
-
-  getRandomLocation(): number[]
-  {
-    const length = this.mockPositions.length;
-    const index = Math.floor(Math.random() * length) % length;
-    return [this.mockPositions[index].lat,this.mockPositions[index].long]
   }
 }

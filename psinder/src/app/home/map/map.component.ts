@@ -4,17 +4,10 @@ import TileLayer from 'ol/layer/Tile';
 import OSM from 'ol/source/OSM';
 import View from 'ol/View';
 import { fromLonLat } from 'ol/proj';
-import { Coordinate } from 'ol/coordinate';
-import VectorLayer from 'ol/layer/Vector';
-import VectorSource from 'ol/source/Vector';
 import { Overlay } from 'ol';
 import { GeolocationService } from '../../services/geolocation.services';
 import { Subscription } from 'rxjs';
 
-interface MockCoordinates {
-  lat: number
-  long: number,
-}
 
 @Component({
   selector: 'app-map',
@@ -96,13 +89,14 @@ export class MapComponent implements OnInit, OnDestroy {
   }
 
   initExamplePositions(){
-    const mockPositionsArray: MockCoordinates[] = this.geoLocationService.mockPositions;
-    const length = mockPositionsArray.length;
-    for (let i = 0; i < length; i++) {
-      const latitude = mockPositionsArray[i].lat; 
-      const longitude = mockPositionsArray[i].long; 
-      this.addWaypoint(longitude, latitude, "🐕");
-    }
+    this.subscribtionHolder.push(this.geoLocationService.mockPositions.subscribe(
+      geolocations => {
+        geolocations.forEach( geolocation => {
+          console.log(geolocation.latitude);
+        this.addWaypoint(geolocation.longitude, geolocation.latitude, "🐕");
+        })
+      }
+    ));
   }
 
   private getRandomNumberInRange(min: number, max: number): number {

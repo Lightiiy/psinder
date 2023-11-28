@@ -4,6 +4,8 @@ import { GeolocationService } from '../services/geolocation.services';
 import { ForumMockService } from '../services/forummock.service';
 import { fromLonLat } from 'ol/proj';
 import { DOCUMENT } from '@angular/common';
+import { Subscription } from 'rxjs';
+import { UserData } from '../../assets/models/userData.model';
 
 interface PostData {
   avatar: string,
@@ -23,6 +25,9 @@ export class ForumComponent implements OnInit, OnDestroy {
 
   forumPosts: PostData[] = [];
 
+  private subscribtionHolder: Subscription[] = []
+
+
   constructor(
     @Inject(DOCUMENT) private document: any,
     private geolocationService: GeolocationService,
@@ -30,17 +35,24 @@ export class ForumComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.document.body.classList.add('overflowHidden');
-    this.forumMockService.mockPosts.forEach( (element: PostData) => {
-      this.forumPosts.push({
-        ...element,
-        coords: this.geolocationService.getRandomLocation()
+
+    this.subscribtionHolder.push( this.forumMockService.mockPosts.subscribe(
+      userInfos => {
+        userInfos.forEach( (userInfo: UserData) => {
+        this.forumPosts.push({
+        ...userInfo,
+        coords: [userInfo.location.latitude, userInfo.location.longitude]
       })
-    });
+        })
+      }
+    ));
   }
 
   ngOnDestroy(): void {
     this.document.body.classList.remove('overflowHidden');
-
+    this.subscribtionHolder?.forEach(subscribtion => {
+      subscribtion.unsubscribe();
+    })
   }
 
   zoomToPost(coords: number[]):void{

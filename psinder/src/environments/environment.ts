@@ -5,7 +5,7 @@ import { getAnalytics } from "firebase/analytics";
 // The list of file replacements can be found in `angular.json`.
 
 const firebaseConfig = {
-  apiKey: "AIzaSyB3yhjxUYKoAWrwnt3nQXP3gfPJ-_0zd4Q",
+  apiKey: "AIzaSyA0DxmPL0akUwYWDaluPV0QHYNWZN1HBBU",
   authDomain: "psinder-3386d.firebaseapp.com",
   projectId: "psinder-3386d",
   storageBucket: "psinder-3386d.appspot.com",
